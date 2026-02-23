@@ -1,0 +1,14 @@
+# Solo permitir imágenes en la carpeta uploads
+<FilesMatch "\.(?!jpg|jpeg|png|gif|webp|svg)">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# No ejecutar PHP en uploads
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+
+# Prevenir ejecución de scripts
+Options -ExecCGI
+AddHandler cgi-script .php .pl .py .jsp .asp .htm .shtml .sh .cgi

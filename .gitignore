@@ -21,4 +21,8 @@ staticfiles/
 *.sqlite3
 .DS_Store
 
-
+# Dating app - uploads (solo mantener .gitkeep)
+dating-app/uploads/profiles/*
+dating-app/uploads/thumbnails/*
+!dating-app/uploads/profiles/.gitkeep
+!dating-app/uploads/thumbnails/.gitkeep

@@ -1,0 +1,40 @@
+# Protección de directorios sensibles
+<FilesMatch "\.(php|sql|log)$">
+    # Solo permitir acceso a archivos PHP en las carpetas públicas
+</FilesMatch>
+
+# Proteger carpeta includes
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^includes/ - [F,L]
+    RewriteRule ^sql/ - [F,L]
+</IfModule>
+
+# Prevenir listado de directorios
+Options -Indexes
+
+# Configuración de charset
+AddDefaultCharset UTF-8
+
+# Configuración de PHP (para hosting compartido)
+<IfModule mod_php.c>
+    php_value upload_max_filesize 4M
+    php_value post_max_size 5M
+    php_value max_execution_time 30
+    php_value max_input_time 30
+</IfModule>
+
+# Compresión GZIP
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript image/svg+xml
+</IfModule>
+
+# Cache de archivos estáticos
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
